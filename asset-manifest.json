@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/mui-recommended-gigs-02/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/mui-recommended-gigs-02/static/js/main.79902ea0.chunk.js",
+    "main.js.map": "/mui-recommended-gigs-02/static/js/main.79902ea0.chunk.js.map",
+    "runtime-main.js": "/mui-recommended-gigs-02/static/js/runtime-main.de7261af.js",
+    "runtime-main.js.map": "/mui-recommended-gigs-02/static/js/runtime-main.de7261af.js.map",
+    "static/js/2.04365f55.chunk.js": "/mui-recommended-gigs-02/static/js/2.04365f55.chunk.js",
+    "static/js/2.04365f55.chunk.js.map": "/mui-recommended-gigs-02/static/js/2.04365f55.chunk.js.map",
+    "index.html": "/mui-recommended-gigs-02/index.html",
+    "precache-manifest.f2e2ca198c94258e537db13cd9c4c89c.js": "/mui-recommended-gigs-02/precache-manifest.f2e2ca198c94258e537db13cd9c4c89c.js",
+    "service-worker.js": "/mui-recommended-gigs-02/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/mui-recommended-gigs-02/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.04365f55.chunk.js.LICENSE.txt": "/mui-recommended-gigs-02/static/js/2.04365f55.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.de7261af.js",
+    "static/js/2.04365f55.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.79902ea0.chunk.js"
+  ]
+}
