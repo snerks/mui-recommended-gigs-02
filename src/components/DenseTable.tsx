@@ -298,7 +298,8 @@ const DenseTable: React.FC<Props> = (props) => {
     const fetchShowsInfo = async () => {
       // console.log("fetchShowsInfo");
 
-      const url = `https://show01-cd72d.firebaseio.com/.json`;
+      // const url = `https://show01-cd72d.firebaseio.com/.json`;
+      const url = `https://gigs01-default-rtdb.europe-west1.firebasedatabase.app/.json`;
 
       const responseJson = await fetch(url);
 
@@ -334,84 +335,84 @@ const DenseTable: React.FC<Props> = (props) => {
       <CircularProgress color="inherit" />
     </Backdrop>
   ) : (
-      <Grid container direction="column">
-        <Grid item>
-          <Formik initialValues={{ artistFilter: "" }} onSubmit={() => { }}>
-            {({ values, errors, isSubmitting, handleChange }) => {
-              // console.table(values);
+    <Grid container direction="column">
+      <Grid item>
+        <Formik initialValues={{ artistFilter: "" }} onSubmit={() => { }}>
+          {({ values, errors, isSubmitting, handleChange }) => {
+            // console.table(values);
 
-              // if (values.artistFilter && values.artistFilter.length > 1) {
-              //     setTimeout(function () {
-              //         setArtistFilter(values.artistFilter);
-              //     }, 30);
-              // }
+            // if (values.artistFilter && values.artistFilter.length > 1) {
+            //     setTimeout(function () {
+            //         setArtistFilter(values.artistFilter);
+            //     }, 30);
+            // }
 
-              const relevantShows = getRelevantShows(values.artistFilter);
+            const relevantShows = getRelevantShows(values.artistFilter);
 
-              return (
-                <Grid container direction="column">
-                  <Grid item container>
-                    <Grid item>
-                      <Form style={{ padding: "0 30px 15px 15px" }}>
-                        <MyTextField
-                          placeholder="artist filter"
-                          name="artistFilter"
-                          type="input"
-                        />
-                      </Form>
-                    </Grid>
-                    <Grid item>
-                      <Chip
-                        variant="default"
-                        color="secondary"
-                        size="small"
-                        label={relevantShows.length}
+            return (
+              <Grid container direction="column">
+                <Grid item container>
+                  <Grid item>
+                    <Form style={{ padding: "0 30px 15px 15px" }}>
+                      <MyTextField
+                        placeholder="artist filter"
+                        name="artistFilter"
+                        type="input"
                       />
-                    </Grid>
+                    </Form>
                   </Grid>
                   <Grid item>
-                    <TableContainer component={Paper} square>
-                      <Table
-                        className={classes.table}
-                        size="small"
-                        aria-label="a dense table"
-                      >
-                        <TableHead>
-                          <TableRow>
+                    <Chip
+                      variant="default"
+                      color="secondary"
+                      size="small"
+                      label={relevantShows.length}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <TableContainer component={Paper} square>
+                    <Table
+                      className={classes.table}
+                      size="small"
+                      aria-label="a dense table"
+                    >
+                      <TableHead>
+                        <TableRow>
+                          <Hidden smDown>
+                            <StyledTableCell>Day</StyledTableCell>
+                          </Hidden>
+                          <StyledTableCell>Date</StyledTableCell>
+                          <StyledTableCell>Artists</StyledTableCell>
+                          <StyledTableCell>Venue</StyledTableCell>
+                          <StyledTableCell>Actions</StyledTableCell>
+                          <StyledTableCell>&nbsp;</StyledTableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {/* {showsInfo.shows.filter(show => new Date(show.date) >= new Date()).map((show) => ( */}
+                        {relevantShows.map((show) => (
+                          <StyledTableRow key={Math.random()}>
                             <Hidden smDown>
-                              <StyledTableCell>Day</StyledTableCell>
-                            </Hidden>
-                            <StyledTableCell>Date</StyledTableCell>
-                            <StyledTableCell>Artists</StyledTableCell>
-                            <StyledTableCell>Venue</StyledTableCell>
-                            <StyledTableCell>Actions</StyledTableCell>
-                            <StyledTableCell>&nbsp;</StyledTableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {/* {showsInfo.shows.filter(show => new Date(show.date) >= new Date()).map((show) => ( */}
-                          {relevantShows.map((show) => (
-                            <StyledTableRow key={Math.random()}>
-                              <Hidden smDown>
-                                <StyledTableCell>
-                                  {getDayName(show.date)}
-                                </StyledTableCell>
-                              </Hidden>
                               <StyledTableCell>
-                                {getDateFormatted(show.date)}
+                                {getDayName(show.date)}
                               </StyledTableCell>
-                              <StyledTableCell>
-                                {/* <pre>
+                            </Hidden>
+                            <StyledTableCell>
+                              {getDateFormatted(show.date)}
+                            </StyledTableCell>
+                            <StyledTableCell>
+                              {/* <pre>
                                           {JSON.stringify(show, null, 2)}
                                       </pre> */}
-                                <Grid container>
-                                  <Grid item xs={11}>
-                                    {show.artists.map((artist) => {
-                                      return (
-                                        <p key={`${show.id}.${artist.name}`}>
-                                          {artist.name}
+                              <Grid container>
+                                <Grid item xs={11}>
+                                  {show.artists.map((artist) => {
+                                    return (
+                                      <p key={`${show.id}.${artist.name}`}>
+                                        {artist.name}
 
-                                          {/* <span *ngIf="artist.stageTime"
+                                        {/* <span *ngIf="artist.stageTime"
                                                 class="badge badge-pill badge-primary"
                                                 style="margin-right: 10px;"
                                                 title="Stage Time">
@@ -425,24 +426,24 @@ const DenseTable: React.FC<Props> = (props) => {
                                                   Video
                                                 </span>
                                               </a> */}
-                                        </p>
-                                      );
-                                    })}
-                                  </Grid>
-                                  <Grid item xs={1}>
-                                    <IconButton
-                                      aria-label="details"
-                                      component={Link}
-                                      to={`/gigdetails/${show.id}`}
-                                    >
-                                      <DetailsIcon />
-                                    </IconButton>
-                                  </Grid>
+                                      </p>
+                                    );
+                                  })}
                                 </Grid>
-                              </StyledTableCell>
-                              <StyledTableCell>{show.venue}</StyledTableCell>
-                              <StyledTableCell>
-                                {/* <Button
+                                <Grid item xs={1}>
+                                  <IconButton
+                                    aria-label="details"
+                                    component={Link}
+                                    to={`/gigdetails/${show.id}`}
+                                  >
+                                    <DetailsIcon />
+                                  </IconButton>
+                                </Grid>
+                              </Grid>
+                            </StyledTableCell>
+                            <StyledTableCell>{show.venue}</StyledTableCell>
+                            <StyledTableCell>
+                              {/* <Button
                                 variant="contained"
                                 color="primary"
                                 size="small"
@@ -451,75 +452,75 @@ const DenseTable: React.FC<Props> = (props) => {
                               >
                                 <span>Edit</span>
                               </Button> */}
-                                <IconButton
-                                  aria-label="edit"
-                                  component={Link}
-                                  to={`/editgigdetails/${show.id}`}
-                                >
-                                  <EditIcon />
-                                </IconButton>
-                              </StyledTableCell>
-                              <StyledTableCell>
-                                <Grid container direction="column" spacing={1}>
-                                  {show.isSoldOut && (
+                              <IconButton
+                                aria-label="edit"
+                                component={Link}
+                                to={`/editgigdetails/${show.id}`}
+                              >
+                                <EditIcon />
+                              </IconButton>
+                            </StyledTableCell>
+                            <StyledTableCell>
+                              <Grid container direction="column" spacing={1}>
+                                {show.isSoldOut && (
+                                  <Grid item>
+                                    <Chip
+                                      style={{
+                                        backgroundColor:
+                                          theme.palette.warning.main,
+                                        color:
+                                          theme.palette.warning.contrastText,
+                                      }}
+                                      size="small"
+                                      label="Sold Out"
+                                    />
+                                  </Grid>
+                                )}
+                                {show.isCancelled && (
+                                  <Grid item>
+                                    <Chip
+                                      style={{
+                                        backgroundColor:
+                                          theme.palette.error.main,
+                                        color: theme.palette.error.contrastText,
+                                      }}
+                                      size="small"
+                                      label="Cancelled"
+                                    />
+                                  </Grid>
+                                )}
+                                {show.priceText &&
+                                  show.priceText.indexOf("£") === 0 && (
                                     <Grid item>
                                       <Chip
                                         style={{
                                           backgroundColor:
-                                            theme.palette.warning.main,
+                                            theme.palette.info.main,
                                           color:
-                                            theme.palette.warning.contrastText,
+                                            theme.palette.info.contrastText,
                                         }}
                                         size="small"
-                                        label="Sold Out"
+                                        label={show.priceText}
                                       />
                                     </Grid>
                                   )}
-                                  {show.isCancelled && (
-                                    <Grid item>
-                                      <Chip
-                                        style={{
-                                          backgroundColor:
-                                            theme.palette.error.main,
-                                          color: theme.palette.error.contrastText,
-                                        }}
-                                        size="small"
-                                        label="Cancelled"
-                                      />
-                                    </Grid>
-                                  )}
-                                  {show.priceText &&
-                                    show.priceText.indexOf("£") === 0 && (
-                                      <Grid item>
-                                        <Chip
-                                          style={{
-                                            backgroundColor:
-                                              theme.palette.info.main,
-                                            color:
-                                              theme.palette.info.contrastText,
-                                          }}
-                                          size="small"
-                                          label={show.priceText}
-                                        />
-                                      </Grid>
-                                    )}
-                                  {show.notes && (
-                                    <Grid item>
-                                      <span
-                                        style={
-                                          {
-                                            // backgroundColor: theme.palette.info.main,
-                                            // color: theme.palette.info.contrastText
-                                          }
+                                {show.notes && (
+                                  <Grid item>
+                                    <span
+                                      style={
+                                        {
+                                          // backgroundColor: theme.palette.info.main,
+                                          // color: theme.palette.info.contrastText
                                         }
-                                      >
-                                        {show.notes}
-                                      </span>
-                                    </Grid>
-                                  )}
-                                </Grid>
+                                      }
+                                    >
+                                      {show.notes}
+                                    </span>
+                                  </Grid>
+                                )}
+                              </Grid>
 
-                                {/* 
+                              {/* 
       
                   <span *ngIf="show.priceText && show.priceText.indexOf('£') === 0"
                     class="badge badge-info" style="margin-right: 10px;">
@@ -527,20 +528,20 @@ const DenseTable: React.FC<Props> = (props) => {
                   </span>
       
                   <span *ngIf="show.notes" style="margin-right: 10px;">{{show.notes}}</span> */}
-                              </StyledTableCell>
-                            </StyledTableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  </Grid>
+                            </StyledTableCell>
+                          </StyledTableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
                 </Grid>
-              );
-            }}
-          </Formik>
-        </Grid>
+              </Grid>
+            );
+          }}
+        </Formik>
       </Grid>
-    );
+    </Grid>
+  );
 };
 
 export default DenseTable;
